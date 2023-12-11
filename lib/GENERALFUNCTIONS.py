@@ -4,9 +4,6 @@
 """
 General functions for all system
 """
-from msilib.schema import Font
-from tkinter import font
-from turtle import shapesize
 
 import numpy as np
 import os,time,sys

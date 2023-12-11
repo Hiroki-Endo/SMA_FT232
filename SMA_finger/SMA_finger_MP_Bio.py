@@ -21,8 +21,8 @@ from pca9685.PCA9685 import Pca9685_01 as PWMGENERATOR
 from ads1115.TIADS1115 import HW526Angle as ANGLESENSOR
 
 from lib.GENERALFUNCTIONS import *
-sys.stdout = Logger()
-sys.stderr = sys.stdout		# redirect std err, if necessary
+# sys.stdout = Logger()
+# sys.stderr = sys.stdout		# redirect std err, if necessary
 
 # Test settings
 import pyftdi.ftdi as ftdi
@@ -681,23 +681,30 @@ if __name__=='__main__': # Test codes # Main process
         # expriment setting log  
 
     # Start of IIC comunication
-    url_0 = os.environ.get('FTDI_DEVICE', 'ftdi://ftdi:232h:0:FF/0') 
-    url_1 = os.environ.get('FTDI_DEVICE', 'ftdi://ftdi:232h:0:FE/0')
-    url_2 = os.environ.get('FTDI_DEVICE', 'ftdi://ftdi:232h:0:FD/1')
-    url_3 = os.environ.get('FTDI_DEVICE', 'ftdi://ftdi:232h:0:FC/1')
+    # url_0 = os.environ.get('FTDI_DEVICE', 'ftdi://ftdi:232h:0:FF/0') 
+    # url_1 = os.environ.get('FTDI_DEVICE', 'ftdi://ftdi:232h:0:FE/0')
+    # url_2 = os.environ.get('FTDI_DEVICE', 'ftdi://ftdi:232h:0:FD/1')
+    # url_3 = os.environ.get('FTDI_DEVICE', 'ftdi://ftdi:232h:0:FC/1')
+    # url_0 = os.environ.get('FTDI_DEVICE', '/dev/tty.usbserial-1430') 
+    # Change the URLs for Mac
+    url_0 = os.environ.get('FTDI_DEVICE', 'ftdi://ftdi:232h:0/1') 
+    url_1 = os.environ.get('FTDI_DEVICE', 'ftdi://ftdi:232h:0/2')
+    url_2 = os.environ.get('FTDI_DEVICE', 'ftdi://ftdi:232h:0/3')
+    url_3 = os.environ.get('FTDI_DEVICE', 'ftdi://ftdi:232h:0/4')
+
 
     # MP on
     print("SMA Finger MultiProcess: \nTwo thread with Python threading library")
          # url_PCA,url_LSM,PCA_device,LSM_device = findFtdiAddr()
 
-    case = 0
-    if case == 1: url_Control = url_1; url_Sensor = url_0
-    else: url_Control = url_0; url_Sensor = url_1
+    # case = 0
+    # if case == 1: url_Control = url_1; url_Sensor = url_0
+    # else: url_Control = url_0; url_Sensor = url_1
 
     # # i2c_device_0,i2c_device_1 = test_dual_ftdi()
-    if url_Control==[] or url_Sensor==[]:
-        print("Failed on finding USB FT232H device addr:",url_Control,url_Sensor); exit()
-    else : print("Found USB FT232H device @:",url_Control,url_Sensor) 
+    # if url_Control==[] or url_Sensor==[]:
+    #     print("Failed on finding USB FT232H device addr:",url_Control,url_Sensor); exit()
+    # else : print("Found USB FT232H device @:",url_Control,url_Sensor) 
 
 
     with multiprocessing.Manager() as process_manager:
